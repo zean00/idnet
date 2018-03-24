@@ -34,13 +34,14 @@ contract Identity is Ownable {
 		return sha256(addr, dist);
 	}
 
-	//Hash Agama, Status Perkawinan, Pekerjaan, Kewarganegaraan, Golongan Darah, Tanggal Berlaku
-	function HashAdditionalData (string religion, string marital, string job, string citizenship, string bloodType, string expired) public pure returns(bytes32) {
+	//Hash Agama, Status Perkawinan, Pekerjaan, Kewarganegaraan, Golongan Darah, Jenis Kelamin, Tanggal Berlaku
+	function HashAdditionalData (string religion, string marital, string job, string citizenship, string bloodType, string gender, string expired) public pure returns(bytes32) {
 		bytes32 data1 = sha256(sha256(religion), sha256(marital));
 		bytes32 data2 = sha256(sha256(job), sha256(citizenship));
-		bytes32 data3 = sha256(sha256(bloodType), sha256(expired));
+		bytes32 data3 = sha256(sha256(bloodType), sha256(gender));
 		bytes32 dataMerge = sha256(data1, data2);
-		return sha256(dataMerge, data3);
+		bytes32 dataMerge2 = sha256(data3, sha256(expired));
+		return sha256(dataMerge, dataMerge2);
 	}
 	
 	function SetIDHash (bytes32 hash) onlyOwner public {
@@ -84,9 +85,9 @@ contract Identity is Ownable {
 	}
 	
 	//Check Agama, Status Perkawinan, Pekerjaan, Kewarganegaraan, Golongan Darah, Tanggal Berlaku
-	function CheckAdditionalData (string religion, string marital, string job, string citizenship, string bloodType, string expired) public view returns(bool) {
+	function CheckAdditionalData (string religion, string marital, string job, string citizenship, string bloodType, string gender, string expired) public view returns(bool) {
 		require(additionalDataHash != 0x00);
-		return additionalDataHash == HashAdditionalData(religion, marital, job, citizenship, bloodType, expired) && active;
+		return additionalDataHash == HashAdditionalData(religion, marital, job, citizenship, bloodType, gender, expired) && active;
 	}
 	
 	function GetLeftHash() public view returns (bytes32) {

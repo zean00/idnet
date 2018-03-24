@@ -31,7 +31,7 @@ contract('Identity', function(accounts) {
       return id.SetAddressHash(r.valueOf())
     })
     .then(function() {
-      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', '31-12-2020')
+      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', 'pria', '31-12-2020')
     })
     .then(function(r) {
       return id.SetAdditionalHash(r.valueOf())
@@ -49,7 +49,7 @@ contract('Identity', function(accounts) {
     })
     .then(function(r){
       assert.equal(r.valueOf(), true, "should be true");
-      return id.CheckAdditionalData('islam', 'single', 'developer', 'wni', '-', '31-12-2020')
+      return id.CheckAdditionalData('islam', 'single', 'developer', 'wni', '-', 'pria', '31-12-2020')
     })
     .then(function(r){
       assert.equal(r.valueOf(), true, "should be true");
@@ -80,7 +80,7 @@ contract('Identity', function(accounts) {
       return id.SetAddressHash(r.valueOf())
     })
     .then(function() {
-      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', '31-12-2020')
+      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', 'pria', '31-12-2020')
     })
     .then(function(r) {
       return id.SetAdditionalHash(r.valueOf())
@@ -104,7 +104,7 @@ contract('Identity', function(accounts) {
       return id.SetAddressHash(r.valueOf());
     })
     .then(function(){
-      return id.HashAdditionalData('islam', 'single', 'hacker', 'wni', 'o', '31-12-2020')
+      return id.HashAdditionalData('islam', 'single', 'hacker', 'wni', 'o', 'pria','31-12-2020')
     })
     .then(function(r) {
       return id.SetAdditionalHash(r.valueOf())
@@ -122,7 +122,7 @@ contract('Identity', function(accounts) {
     })
     .then(function(r){
       assert.equal(r.valueOf(), true, "should be true");
-      return id.CheckAdditionalData('islam', 'single', 'hacker', 'wni', 'o', '31-12-2020')
+      return id.CheckAdditionalData('islam', 'single', 'hacker', 'wni', 'o', 'pria', '31-12-2020')
     })
     .then(function(r){
       assert.equal(r.valueOf(), true, "should be true");
@@ -155,7 +155,7 @@ contract('Identity', function(accounts) {
       return id.SetAddressHash(r.valueOf())
     })
     .then(function() {
-      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', '31-12-2020')
+      return id.HashAdditionalData('islam', 'single', 'developer', 'wni', '-', 'pria', '31-12-2020')
     })
     .then(function(r) {
       return id.SetAdditionalHash(r.valueOf())

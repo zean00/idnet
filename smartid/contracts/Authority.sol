@@ -38,13 +38,32 @@ contract Authority is Ownable {
 		IRegister(idHash, address(person), primaryHash);
 	}
 
+	function CreateFullIdentity (string id, bytes32 primaryHash, bytes32 addressHash, bytes32 additionalHash) onlyOwner public {
+		bytes32 idHash = sha256(id);
+		require (citizens[idHash] == 0x00);
+
+		Identity person = new Identity();
+		person.SetIDHash(idHash);
+		person.SetPrimaryHash(primaryHash);
+		person.SetAddressHash(addressHash);
+		person.SetAdditionalHash(additionalHash);
+
+		citizens[idHash] = address(person);
+		CentralAuthority hq = CentralAuthority(central);
+		hq.RegisterCitizen(idHash);
+
+		IRegister(idHash, address(person), primaryHash);
+	}
+	
+
 	function GetIdentityAddress (string id) public view returns(address) {
 		return citizens[sha256(id)];
 	}
 	
 	//Update ID, Alamat, RT/RW, Kelurhan, Kabupaten
-	function UpdateAddress (address identity, bytes32 addressHash, address newAuthority) onlyOwner public {
-		Identity person = Identity(identity);
+	function UpdateAddress (string id, bytes32 addressHash, address newAuthority) onlyOwner public {
+		address adr = citizens[sha256(id)];
+		Identity person = Identity(adr);
 		person.SetAddressHash(addressHash);
 		if (newAuthority != 0x00 && newAuthority != address(this)){
 			CentralAuthority hq = CentralAuthority(central);
@@ -54,8 +73,9 @@ contract Authority is Ownable {
 	}
 
 	//Update ID, Agama, Status Perkawinan, Pekerjaan, Kewarganegaraan, Golongan Darah, Tanggal Berlaku
-	function UpdateAdditionalData (address identity, bytes32 additionalHash) onlyOwner public{
-		Identity person = Identity(identity);
+	function UpdateAdditionalData (string id, bytes32 additionalHash) onlyOwner public{
+		address adr = citizens[sha256(id)];
+		Identity person = Identity(adr);
 		person.SetAdditionalHash(additionalHash);
 	}
 	
