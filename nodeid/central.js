@@ -46,6 +46,14 @@ async function main() {
 			return res;
 		}
 	}
+
+	if (command == 'all') {
+		const c = await createCentral(args[3])
+		const a = await createAuthority(c, args[4])
+		await addAuthority(c,a);
+		console.log("Central successfully created at address : " + c);
+		console.log("Authority successfully created at address : " + a);
+	}
 }
 
 
