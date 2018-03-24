@@ -8,7 +8,7 @@ RUN cd / && \
     truffle compile
 
 RUN cd /idnet/nodeid && \
-    npm install && \
+    npm install
 
 FROM node:carbon-alpine
 
