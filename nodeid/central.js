@@ -48,9 +48,16 @@ async function main() {
 	}
 
 	if (command == 'all') {
+		const fs = require('fs');
 		const c = await createCentral(args[3])
 		const a = await createAuthority(c, args[4])
 		await addAuthority(c,a);
+		var confile = fs.readFileSync('./config.json','utf8');
+		confile = JSON.parse(confile);
+		confile.central_address = c;
+		confile.auth_address = a;
+		
+		fs.writeFileSync('./config.json', JSON.stringify(confile, null, 2));
 		console.log("Central successfully created at address : " + c);
 		console.log("Authority successfully created at address : " + a);
 	}
