@@ -1,8 +1,8 @@
 {
   "web3_url": "ws://localhost:8545",
   "contracts_path": "contracts",
-  "central_address": "0x1b59b250a1c0db58e9ccdebcdd1a4cf0f017efcf",
-  "auth_address": "0x1b7f7705fd5ca643a71974f7ddf23c83bb8852e4",
+  "central_address": "0x00",
+  "auth_address": "0x00",
   "service_port": 8080,
   "default_account": "",
   "gas_limit": 6641592,
