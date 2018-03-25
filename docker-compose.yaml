@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  nodeid:
+    image: zean00/nodeid
+    command: sh /nodeid/init.sh
+    environment:
+      - WEB3_HOST=ganache
+      - WEB3_PORT=8545
+      - WEB3_URL=ws://ganache:8545
+    depends_on:
+      - ganache
+    ports:
+      - "8080:8080"
+  ganache:
+    image: trufflesuite/ganache-cli
