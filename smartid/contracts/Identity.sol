@@ -9,9 +9,9 @@ contract Identity is Ownable {
 
 	bytes32 public idHash;
 	bytes32 public primaryDataHash;
-	bytes32 private addressHash;
-	bytes32 private additionalDataHash;
-	bool private active;
+	bytes32 public addressHash;
+	bytes32 public additionalDataHash;
+	bool public active;
 
 	function Identity () public{
 		active = true;
